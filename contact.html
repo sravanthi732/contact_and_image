@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customised Dresses - Contact Us</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  
+  background-color: #fff0f5;
+}
+
+header {
+  background-color: #ff69b4;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.form-container {
+  padding: 20px;
+  max-width: 600px;
+  margin: auto;
+}
+
+form {
+  display: grid;
+  gap: 15px;
+}
+
+input, select, textarea {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background-color: #ff69b4;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ff1493;
+}
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Submit your design</h1>
+  </header>
+
+  <section class="form-container">
+    <form id="designForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" required>
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" required>
+
+      <label for="dress">Dress Type:</label>
+      <select id="dress" required>
+        <option value="">Select</option>
+        <option value="saree">Saree</option>
+        <option value="lehenga">Lehenga</option>
+        <option value="gown">Gown</option>
+        <option value="gown">kurthi</option>
+        <option value="gown">saree</option>
+        <option value="gown">Half-saree</option>
+
+      </select>
+
+      <label for="fabric">Fabric Preference:</label>
+      <input type="text" id="fabric" required>
+
+      <label for="message">Message:</label>
+      <textarea id="message" required></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

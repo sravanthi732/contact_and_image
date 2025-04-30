@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Customised Dress Gallery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #eff2f2;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      padding: 10px;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .details {
+      padding: 10px;
+    }
+
+    .details h3 {
+      margin: 10px 0 5px;
+    }
+
+    .details p {
+      margin: 4px 0;
+      color: #555;
+    }
+    h3{
+      color:#0056b3;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 12px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Customised Dress Gallery</h1>
+  <h3>Add New Dress</h3>
+<form id="dressForm">
+  <input type="text" id="title" placeholder="Dress Title" required>
+  <input type="text" id="fabric" placeholder="Fabric Type" required>
+  <input type="text" id="meter" placeholder="Meter" required>
+  <input type="url" id="image" placeholder="Image URL" required>
+  <button type="submit">Add Dress</button>
+</form>
+
+
+  <div class="gallery" id="gallery">
+  
+  </div>
+  <br><br><br>
+
+  <script>
+    const dresses = [
+      {
+        image: "data:image/jpeg;base64,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",
+
+        title: " Gown",
+        fabric: "net",
+        meter: "2.5m",
+      },
+      {
+        image: "https://rooprekha.com/cdn/shop/files/3_2_42ec04e5-25f5-4223-a26d-73788f55ec18.jpg?v=1702811777&width=1445",
+        title: "Half-saree",
+        fabric: "Silk",
+        meter: "8m",
+      
+      },
+      {
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3U5N9VFjS79KoZdSO3w724z3FohT-jOqH-A&s",
+        title: "Elegant Wedding Gown",
+        fabric: "Net",
+        meter: "12m",
+      
+      },
+      {
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR72DCKOyRYaSsYEbJJWscdMKX_ome5mVzn0b01PDbAowC4jX-yf4cGF0CwIGMKmC_mJtY&usqp=CAU",
+        title: "Sleeveless Flared Gown",
+        fabric: "Cotton",
+        meter: "3m",
+        
+      
+      },
+      {
+        image: "https://s.alicdn.com/@sc04/kf/Ab1266da8f6ae438e83b882d6e4bdb905U.jpg",
+        title: "Saree",
+        fabric: "Silk",
+        meter: "7m",
+      
+      },
+     
+      {
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfNAM74Doc_XkNwkONLnEIFyV9r8zdvV7bYd4Sq2TU-wthNQUZT7i16mamjoKNM8h_GzI&usqp=CAU",
+        title: "Anarkali Kurti",
+        fabric: "Linen",
+        meter: "5m",
+        
+       
+      }
+    ];
+
+    const gallery = document.getElementById("gallery");
+
+    dresses.forEach(dress => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <img src="${dress.image}" alt="${dress.title}">
+        <div class="details">
+          <h3>${dress.title}</h3>
+          <p><strong>Fabric:</strong> ${dress.fabric}</p>
+          <p><strong>Meter:</strong> ${dress.meter}</p>
+         
+          <button class="btn">Request This Design</button>
+        </div>
+      `;
+      gallery.appendChild(card);
+    });
+  </script>
+
+</body>
+</html>
